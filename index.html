@@ -1,0 +1,67 @@
+<html>
+	<head>
+		
+		<!-- Not strictly necessary, this is for performance //-->
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		
+		<!-- This links to the Roboto and Roboto Mono font on Google. If this needs to be used without external links you’ll need to download the fonts //-->
+		<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&family=Roboto:wght@200;300;400;500;600;800&display=swap" rel="stylesheet"/>
+		
+		<!-- Astro’s required CSS, this can be downloaded and hosted locally //-->
+		<link rel="stylesheet" href="https://unpkg.com/@astrouxds/astro-web-components/dist/astro-web-components/astro-web-components.css"/>
+		
+		<!-- Astro’s Component library, this can be downloaded and hosted locally //-->
+		<script type="module" src="https://unpkg.com/@astrouxds/astro-web-components/dist/astro-web-components/astro-web-components.esm.js"></script>
+
+		<!-- Initiates the HTML Custom Element  //-->
+		<script type="module">
+			import { defineCustomElements } from '/node_modules/astro-web-components/loader'
+			defineCustomElements()
+		</script>
+		
+		<!-- Some very trivial styling to place content below the status bar aligned centrally //-->
+		<style>
+			.app-content {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				padding: 1em;
+				height: calc(100vh - 100px);
+			}
+		</style>
+		
+	</head>
+	
+	<!-- Astro components default to dark theme so this class isn’t required //-->
+	<body class="dark-theme">
+		
+		<!-- 
+			Simple Global Status Bar
+			Note: it is very likely we will move away from the property based application name, icon, et. al.,
+			and make use of slotted content.
+		
+		 //-->
+		<rux-global-status-bar
+			app-domain="Canopy"
+			app-name="Dashboard"
+			include-icon="true"
+			menu-icon="apps">
+			
+			
+			<rux-clock></rux-clock>
+			
+		</rux-global-status-bar>
+		
+		<!-- Place the content part of your application here and edit edit the .app-content style to change layout //-->
+		<div class="app-content">
+			
+			<!-- 
+				This is an incredibly rudimentary button with a simple, native JavaScript event
+				 that will open an alert window. This is as simple as it gets and probably a good
+				 place to start for our initial efforts. As the scope grows looking at a framework
+				 like Angular or a library like React, Vue or Svelte might be a better fit
+			//-->
+			<rux-button onclick="alert('hello world')">Hello there</rux-button>
+		</div>
+	</body>
+</html>
